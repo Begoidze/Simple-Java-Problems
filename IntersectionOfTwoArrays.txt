@@ -1,0 +1,31 @@
+import java.util.HashSet;
+import java.util.Set;
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<String> nums1Set = new HashSet<>();
+        Set<String> nums2Set = new HashSet<>();
+        Set<String> answ = new HashSet<>();
+
+        for(int i = 0; i < nums1.length; i++){
+            nums1Set.add(String.valueOf(nums1[i]));
+        }
+        for(int i = 0; i < nums2.length; i++){
+            nums2Set.add(String.valueOf(nums2[i]));
+        }
+
+        for (String str : nums1Set) { 
+            if (nums2Set.contains(str)) {
+                answ.add(str); 
+             }
+        }
+
+        int[] uniques = new int[answ.size()];
+        int j = 0;
+
+        for (String str : answ) {
+            uniques[j] = Integer.parseInt(str);
+            j++;
+        }
+        return uniques;
+    }
+}
