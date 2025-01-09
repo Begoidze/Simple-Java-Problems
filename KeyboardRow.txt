@@ -1,0 +1,36 @@
+import java.util.HashSet;
+
+class Solution {
+    public String[] findWords(String[] words) {
+        HashSet<Character> row1 = new HashSet<>();
+        HashSet<Character> row2 = new HashSet<>();
+        HashSet<Character> row3 = new HashSet<>();
+        String[] answ = new String[words.length];
+        int index = 0;
+
+        for (char c : "qwertyuiop".toCharArray()) row1.add(c);
+        for (char c : "asdfghjkl".toCharArray()) row2.add(c);
+        for (char c : "zxcvbnm".toCharArray()) row3.add(c);
+
+        for (int i = 0; i < words.length; i++) {
+            if (canMake(words[i].toLowerCase(), row1) || 
+                canMake(words[i].toLowerCase(), row2) || 
+                canMake(words[i].toLowerCase(), row3)) {
+                answ[index++] = words[i];
+            }
+        }
+
+        String[] result = new String[index];
+        System.arraycopy(answ, 0, result, 0, index);
+        return result;
+    }
+
+    private boolean canMake(String word, HashSet<Character> row) {
+        for (char c : word.toCharArray()) {
+            if (!row.contains(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
